@@ -1,0 +1,8 @@
+# Vagrant
+.vagrant
+
+# src symlink
+provisioning/src
+
+# hosts
+linode_hosts

@@ -1,0 +1,7 @@
+---
+# handler to handle common notifications
+
+- name: restart postgresql
+  sudo: yes
+  sudo_user: postgres
+  action: service name=postgresql state=restarted

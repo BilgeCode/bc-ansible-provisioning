@@ -1,0 +1,14 @@
+
+##
+# these scripts set up a complete web application stack that is connected
+# to the remote database backend the other deployment scripts set up
+#
+---
+
+- include: install_packages.yml
+- include: create_users_groups.yml
+- include: create_paths.yml
+- include: config_django_app.yml
+- include: config_passage_timing.yml
+- include: config_nginx.yml
+- include: config_supervisor.yml

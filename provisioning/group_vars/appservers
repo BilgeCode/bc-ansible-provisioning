@@ -1,0 +1,18 @@
+---
+# Settings for Bilgecode appservers
+#
+##
+
+app_name: bilgecode
+base_dir: /var/www
+django_repo: https://github.com/BilgeCode/bilgecode.org.git
+polymer_repo: https://github.com/BilgeCode/passage-timing.git
+root_domain_name: bilgecode.org
+
+# used when the src is copied over locally
+local_src: ./src
+
+app_env_vars:
+  DB_URL: "postgis://{{dbuser}}:{{dbpass}}@{{db_ip}}/{{dbname}}"
+  MEDIA_ROOT: "{{ app_media_dir }}"
+  STATIC_ROOT: "{{ app_static_dir }}"

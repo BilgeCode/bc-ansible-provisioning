@@ -1,0 +1,25 @@
+---
+
+# App Details
+app_user: "{{ app_name }}"
+app_group: webapps
+
+# Application Paths
+base_dir: /var/www
+global_env_dir: "{{ base_dir }}/envs"
+app_env_dir: "{{ global_env_dir }}/{{ app_name }}"
+app_base_dir: "{{ base_dir }}/{{ app_name }}"
+app_code_dir: "{{ app_base_dir }}/src"
+app_log_dir: "{{ app_base_dir }}/logs"
+app_media_dir: "{{ app_base_dir }}/media"
+app_static_dir: "{{ app_base_dir  }}/static"
+
+# Source details
+requirements_txt_path: "{{ app_code_dir }}/requirements.txt"
+django_settings_file: "{{ app_code_dir }}/{{ app_name }}/settings.py"
+django_settings: bilgecode.settings
+
+# Nginx settings
+nginx_http_port: 80
+nginx_access_log_file: "{{ app_log_dir }}/nginx_access.log"
+nginx_error_log_file: "{{ app_log_dir }}/nginx_error.log"

@@ -1,0 +1,22 @@
+---
+# this playbook contains common plays that will be run on all nodes.
+
+
+- name: Ensure OpenSSl and libssl are the latest versions
+  apt: name={{ item }} update_cache=true state=latest
+  with_items:
+    - openssl
+    - libssl-dev
+    - libssl-doc
+  tags: packages
+
+- name: install fail2ban for security purposes
+  apt: pkg=fail2ban state=latest
+  sudo: yes
+
+- name: synchronize the system clock
+  apt: name={{ item }} update_cache=true state=latest
+  sudo: yes
+  with_items:
+    - ntp
+    - ntpdate

@@ -1,0 +1,10 @@
+---
+# Settings for Bilgecode
+#
+##
+
+app_name: bilgecode
+dbname: bc
+dbuser: bc
+dbpass: changeme
+vagrant: false

@@ -1,0 +1,54 @@
+###
+# Create all the directories for this app
+#
+---
+
+- name: Ensure that all paths are created and have the right permissions
+  file: path={{item}}
+    recurse=yes
+    owner={{ app_user }}
+    group={{ app_group }}
+    state=directory
+    mode=0775
+  with_items:
+    - "{{base_dir}}"
+    - "{{app_base_dir}}"
+    - "{{app_code_dir}}"
+    - "{{app_media_dir}}"
+    - "{{app_static_dir}}"
+
+- name: Ensure that the log path is created and has the right permissions
+  file: path={{app_log_dir}}
+    recurse=yes
+    owner={{ app_user }}
+    group={{ app_group }}
+    mode=0774
+    state=directory
+
+# Create Directories
+# Base
+# - name: check if base directory exists
+#   stat: path="{{app_base_dir}}"
+#   register: base_dir
+#
+# - name: create base directory for Django app if it does not exist
+#   command: mkdir "{{app_base_dir}}"
+#   when: base_dir.stat.isdir is not defined
+#
+# # SRC
+# - name: check if app src directory exists
+#   stat: path="{{app_code_dir}}"
+#   register: code_dir
+#
+# - name: create static directory for Django app if it does not exist
+#   command: mkdir "{{app_code_dir}}"
+#   when: code_dir.stat.isdir is not defined
+#
+# # STATIC
+# - name: check if app/static directory exists
+#   stat: path="{{app_static_dir}}"
+#   register: static_dir
+#
+# - name: create static directory for Django app if it does not exist
+#   command: mkdir -p "{{app_static_dir}}"
+#   when: static_dir.stat.isdir is not defined

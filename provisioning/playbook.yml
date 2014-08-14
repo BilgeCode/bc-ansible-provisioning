@@ -1,0 +1,22 @@
+---
+# Deploys the whole application stack
+
+- name: apply common configuration to all nodes
+  hosts: all
+  sudo: yes
+
+  roles:
+    - common
+
+- name: deploy postgresql and configure the databases
+  hosts: dbservers
+
+  roles:
+    - postgis
+
+- name: deploy nginx and configure web servers
+  hosts: appservers
+  sudo: yes
+
+  roles:
+    - web

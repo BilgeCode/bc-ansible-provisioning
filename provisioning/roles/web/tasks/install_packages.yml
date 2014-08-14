@@ -1,0 +1,35 @@
+###
+# updates the APT package cache and install packages necessary for web
+# servers
+#
+---
+
+- name: ensure apt cache is up to date
+  apt: update_cache=yes
+  sudo: yes
+
+
+
+- name: ensure web server packages are installed
+  apt: name={{item}} state=latest update_cache=true
+  sudo: yes
+  with_items:
+    - binutils
+    - build-essential
+    - gdal-bin
+    - git
+    - libpq-dev
+    - libproj-dev
+    - mercurial
+    - nginx
+    - postgresql-client-common
+    - postgresql-client
+    - python-dev
+    - python-pip
+    - python-virtualenv
+    - supervisor
+
+# - name: install virtualenv
+#   pip: name=virtualenv
+#   sudo: yes
+#   tags: packages

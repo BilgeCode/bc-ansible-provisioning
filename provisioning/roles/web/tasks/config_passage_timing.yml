@@ -1,0 +1,26 @@
+---
+
+- name: use a newer apt repo for node
+  apt_repository: repo='ppa:chris-lea/node.js'
+
+- name: install node and npm (included in nodejs) packages
+  apt: name=nodejs state=latest update_cache=true
+  sudo: yes
+
+- name: fix the node install issue by linking repo
+  file: dest=/usr/bin/node src=/usr/bin/nodejs state=link
+  sudo: yes
+
+- name: make sure bower is installed using npm
+  npm: name=bower global=yes
+
+- name: check out the passage-timing app to the static directory
+  git: repo={{polymer_repo}} dest={{app_static_dir}}/pt
+  sudo: yes
+  sudo_user: "{{app_name}}"
+
+- name: install the bower components
+  command: bower install --config.interactive=false
+    chdir={{app_static_dir}}/pt
+  sudo: yes
+  sudo_user: "{{app_name}}"
