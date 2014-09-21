@@ -7,7 +7,8 @@ app_name: bilgecode
 base_dir: /var/www
 django_repo: https://github.com/BilgeCode/bilgecode.org.git
 polymer_repo: https://github.com/BilgeCode/passage-timing.git
-root_domain_name: bilgecode.org
+root_domain_name: bilgecode.com
+analytics_id: UA-42658894-2
 
 # used when the src is copied over locally
 local_src: ./src

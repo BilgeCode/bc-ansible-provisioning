@@ -22,7 +22,7 @@
     recurse=yes
     owner={{ app_user }}
     group={{ app_group }}
-    mode=0774
+    mode=0775
     state=directory
 
 # Create Directories

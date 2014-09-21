@@ -9,6 +9,7 @@
 - include: create_users_groups.yml
 - include: create_paths.yml
 - include: config_django_app.yml
-- include: config_passage_timing.yml
+# - include: config_passage_timing.yml
+- include: config_ssl.yml
 - include: config_nginx.yml
 - include: config_supervisor.yml

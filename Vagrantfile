@@ -25,6 +25,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "provisioning/playbook.yml"
     ansible.host_key_checking = false
+    ansible.ask_vault_pass = true
     ansible.verbose = "vvvv"
     ansible.groups = {
       "appservers" => ["app1"],
@@ -34,7 +35,8 @@ Vagrant.configure("2") do |config|
     ansible.extra_vars = {
       vagrant: true,
       webserver_ip: "192.168.111.101",
-      db_ip: "192.168.111.253"
+      db_ip: "192.168.111.253",
+      ssl: true
     }
   end
 

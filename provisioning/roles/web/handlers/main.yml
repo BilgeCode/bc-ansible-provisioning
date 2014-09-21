@@ -2,10 +2,19 @@
   service: name=nginx state=restarted
   sudo: yes
 
-- name: restart supervisor
-  service: name=supervisor state=restarted
+- name: reload supervisor
+  shell: supervisorctl reload
+  notify: start supervisor service
+
+- name: start supervisor service
+  action: service name=supervisor state=started
+
+# - name: restart supervisor
+#   service: name=supervisor state=restarted
+#   sudo: yes
+
+- name: restart application
+  supervisorctl: name={{ app_name }} state=restarted
   sudo: yes
 
-# - name: restart application
-#   supervisorctl: name={{ app_name }} state=restarted
-#   sudo: yes
+# supervisorctl restart all

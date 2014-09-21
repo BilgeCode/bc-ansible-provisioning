@@ -5,6 +5,12 @@
 - name: write nginx configuration
   template: src=nginx.conf.j2 dest=/etc/nginx/sites-enabled/{{app_name}}.conf
   sudo: yes
+  when: not ssl
+
+- name: write nginx configuration
+  template: src=nginx.ssl.conf.j2 dest=/etc/nginx/sites-enabled/{{app_name}}.conf
+  sudo: yes
+  when: ssl
 
 - name: check if nginx has default symbolic linked website file
   stat: path=/etc/nginx/sites-enabled/default

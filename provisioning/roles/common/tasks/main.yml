@@ -4,6 +4,7 @@
 
 - name: Ensure OpenSSl and libssl are the latest versions
   apt: name={{ item }} update_cache=true state=latest
+  sudo: yes
   with_items:
     - openssl
     - libssl-dev
@@ -20,3 +21,7 @@
   with_items:
     - ntp
     - ntpdate
+
+- name: update all packages
+  apt: upgrade=yes state=latest
+  sudo: yes

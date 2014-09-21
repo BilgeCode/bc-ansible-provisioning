@@ -1,0 +1,33 @@
+###
+# Configuration for SSL certificates
+---
+
+- include_vars: ssl.yml
+  when: ssl
+
+- name: create SSL directory
+  when: ssl
+  file: path=/etc/nginx/ssl/
+    recurse=yes
+    owner={{ app_user }}
+    group={{ app_group }}
+    state=directory
+    mode=0775
+
+- name: create SSL crt file
+  when: ssl
+  copy: content="{{ ssl_crt }}"
+    dest=/etc/nginx/ssl/{{root_domain_name}}.crt
+    owner={{ app_user }}
+    group={{ app_group }}
+    mode=0664
+  sudo: yes
+
+- name: create SSL key file
+  when: ssl
+  copy: content="{{ ssl_key }}"
+    dest=/etc/nginx/ssl/{{root_domain_name}}.key
+    owner={{ app_user }}
+    group={{ app_group }}
+    mode=0664
+  sudo: yes
