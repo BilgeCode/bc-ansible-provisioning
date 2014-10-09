@@ -5,9 +5,11 @@
 - name: reload supervisor
   shell: supervisorctl reload
   notify: start supervisor service
+  sudo: yes
 
 - name: start supervisor service
   action: service name=supervisor state=started
+  sudo: yes
 
 # - name: restart supervisor
 #   service: name=supervisor state=restarted

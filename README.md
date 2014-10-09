@@ -58,7 +58,7 @@ export STATIC_ROOT="/var/www/bilgecode/static/"
 export MEDIA_ROOT="/var/www/bilgecode/media/"
 
   $ ansible-playbook -i linode_hosts playbook.yml -K -vvvv --ask-vault-pass \
-    --extra-vars "db_ip=192.155.94.37 root_domain_name=dev.bc.com dbpass=changeyou ssl=true"
+    --extra-vars "db_ip=192.155.94.37 root_domain_name=bilgecode.com dbpass=changeyou ssl=true"
 
 export DB_URL="postgis://bc:changeme@{{db_ip}}/bc"
 export STATIC_ROOT="/var/www/bilgecode/static/"
