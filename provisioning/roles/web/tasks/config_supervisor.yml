@@ -17,6 +17,7 @@
   template: src=supervisor.conf.j2 dest=/etc/supervisor/conf.d/{{app_name}}.conf
   sudo: yes
   notify:
+    - start supervisor service
     - reload supervisor
     - restart application
 
