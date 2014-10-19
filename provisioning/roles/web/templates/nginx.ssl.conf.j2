@@ -15,6 +15,14 @@ server {
   ssl on;
   ssl_certificate     /etc/nginx/ssl/{{root_domain_name}}.crt;
   ssl_certificate_key /etc/nginx/ssl/{{root_domain_name}}.key;
+  # enables TLSv1/1.1/1.2
+  # not SSLv2 which is weak and should no longer be used.
+  # and not SSLv3 because POODLE
+  ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+  #Disables all weak ciphers
+  #ssl_ciphers ALL:!aNULL:!ADH:!eNULL:!LOW:!EXP:RC4+RSA:+HIGH:+MEDIUM;
+  ssl_ciphers HIGH:!aNULL:!MD5;
+  ssl_prefer_server_ciphers on;
 
   access_log {{app_log_dir}}/nginx.access.log;
   error_log {{app_log_dir}}/nginx.error.log info;

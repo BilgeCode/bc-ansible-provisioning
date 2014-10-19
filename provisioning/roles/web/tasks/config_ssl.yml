@@ -31,3 +31,5 @@
     group={{ app_group }}
     mode=0664
   sudo: yes
+  notify:
+    - restart nginx
